@@ -6,11 +6,10 @@ This is the GDPR required modal for email signups. This is required for all form
 This code will stop the submission of any form it's added to and require the user to accept the before their details are subscribed to.
 
 ## Adding to your project
-// TODO: Add Source
 
 add the following line to your index file above the site JS.
 ```html
-<script type="text/javascript" src=""></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/MelonWD/gdpr-subscribe-modal@v1.0.0/grdp-subscribe-modal.js"></script>
 ```
 
 ## Parameters
