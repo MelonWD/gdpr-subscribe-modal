@@ -35,7 +35,7 @@ gdprSubscribeModal(formID, privacyPolicyURL, linkColour, buttonTextColour);
 ```
 ```Javascript
 // Usage within file your JS
-gdprSubscribeModal('form#footer-subscribe', '#E31522', '#FFF', 'privacy-policy.html');
+gdprSubscribeModal('form#footer-subscribe', 'privacy-policy.html', '#E31522', '#FFF');
 ```
 
 ## Contributors
