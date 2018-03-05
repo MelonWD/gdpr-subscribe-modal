@@ -9,7 +9,7 @@ This code will stop the submission of any form it's added to and require the use
 
 add the following line to your index file above the site JS.
 ```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/MelonWD/gdpr-subscribe-modal@v1.0.1/grdp-subscribe-modal.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/MelonWD/gdpr-subscribe-modal/grdp-subscribe-modal.js"></script>
 ```
 
 ## Parameters
@@ -34,7 +34,7 @@ The function takes the following 4 parameters
 gdprSubscribeModal(formID, privacyPolicyURL, linkColour, buttonTextColour);
 ```
 ```Javascript
-// Usage within file your JS
+// Usage within your JS file
 gdprSubscribeModal('form#footer-subscribe', 'privacy-policy.html', '#E31522', '#FFF');
 ```
 
