@@ -9,7 +9,7 @@ This code will stop the submission of any form it's added to and require the use
 
 add the following line to your index file above the site JS.
 ```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/MelonWD/gdpr-subscribe-modal/grdp-subscribe-modal.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/MelonWD/gdpr-subscribe-modal/gdpr-subscribe-modal.js"></script>
 ```
 
 ## Parameters
