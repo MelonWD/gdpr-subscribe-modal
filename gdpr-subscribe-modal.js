@@ -1,33 +1,16 @@
 function gdprSubscribeModal(formID, privacyPolicyURL, linkColour, buttonTextColour) {
 
 	var modalSelector = '.section-gdpr-subscribe-modal';
-	var GDRPaccepted = false;
-	var policyURL;
-	var colorLink;
-	var btnTextColour;
+	var GDPRaccepted = false;
+	var policyURL = !!privacyPolicyURL ? privacyPolicyURL : 'privacy-policy.html';
+	var colorLink = !!linkColour ? linkColour : '#22B573';
+	var btnTextColour = !!buttonTextColour ? buttonTextColour : '#006837';
 
-	if(privacyPolicyURL) {
-		policyURL = privacyPolicyURL;
-	}
-	else {
-		policyURL = 'privacy-policy.html';
-	}
-
-	if(linkColour) {
-		colorLink = linkColour;
-
-	}
-	else {
-		colorLink = '#22B573';
-	}
-
-	if(buttonTextColour) {
-		btnTextColour = buttonTextColour;
-
-	}
-	else {
-		btnTextColour = '#006837';
-	}
+	$('input[type="submit"]').each(function(incId, domElement){
+		if($(domElement).attr('id') == 'submit' || $(domElement).attr('name') == 'submit'){
+			console.error("This page contains a form with the id/name submit, this will stop the form from being submitted programmatically, please change.");
+		}
+	});
 
 	if($(modalSelector).length == 0) {
 		$('body').append("<section class=\"section-gdpr-subscribe-modal\" style='display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index:9999;'>\n" +
@@ -53,8 +36,8 @@ function gdprSubscribeModal(formID, privacyPolicyURL, linkColour, buttonTextColo
 	// Fade out on confirm and submit form
 	$(modalSelector + ' .btn-confirm').click(function () {
 		$(modalSelector).fadeOut();
-		GDRPaccepted = true;
-		$(formID + ' [type="submit"]').trigger('click')
+		GDPRaccepted = true;
+		$(formID).submit();
 	});
 
 	// Fade out on btn close
@@ -64,7 +47,7 @@ function gdprSubscribeModal(formID, privacyPolicyURL, linkColour, buttonTextColo
 
 
 	$(formID).submit(function (e) {
-		if(GDRPaccepted === false) {
+		if(GDPRaccepted === false) {
 			e.preventDefault();
 			e.stopImmediatePropagation();
 
