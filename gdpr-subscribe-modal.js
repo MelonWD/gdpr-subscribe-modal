@@ -1,7 +1,7 @@
 (function() {
 	var openForForm;
 
-	function gdprSubscribeModal(formID, privacyPolicyURL, linkColour, buttonTextColour) {
+	window.gdprSubscribeModal = function (formID, privacyPolicyURL, linkColour, buttonTextColour) {
 
 		var modalSelector = '.section-gdpr-subscribe-modal';
 		var GDPRaccepted = false;
