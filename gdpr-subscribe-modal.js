@@ -34,7 +34,8 @@
 		});
 
 		if(document.querySelectorAll(modalSelector).length == 0) {
-			$('body').append("<section class=\"section-gdpr-subscribe-modal\" style='display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index:9999; opacity: 0; transition: opacity 250ms ease-in-out'>\n" +
+			var append = document.createElement('div');
+			append.outerHTML = "<section class=\"section-gdpr-subscribe-modal\" style='display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index:9999; opacity: 0; transition: opacity 250ms ease-in-out'>\n" +
 				"\t\t\t<div class=\"sub-overlay\" style='position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0, 0.75); z-index: 0;'></div>\n" +
 				"\t\t\t<div class=\"sub-content\" style='position: absolute; top: 50%; left: 0; right: 0; width: 100%; max-width: 660px; margin: 0 auto; z-index: 1; background: #fff; padding: 70px 0 60px; text-align: center; transform: translateY(-50%);'>\n" +
 				"\t\t\t\t<div class=\"btn-close\" style='position: absolute; height: 25px; cursor: pointer; top: 25px; right: 20px; display: block;'>\n" +
@@ -51,7 +52,9 @@
 				"\t\t\t\t\t<a class=\"btn btn-confirm\" style='cursor: pointer; padding: 16px 35px; font-size: 15px; font-weight: 700;\tborder-radius: 10px; display: inline-block; border: none; background: " + colorLink +"; color: " + btnTextColour+"; '>SUBSCRIBE NOW</a>\n" +
 				"\t\t\t\t</div>\n" +
 				"\t\t\t</div>\n" +
-				"\t\t</section>");
+				"\t\t</section>";
+
+			document.body.appendChild(append);
 		}
 
 		var modal = document.querySelector(modalSelector);
