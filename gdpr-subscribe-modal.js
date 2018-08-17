@@ -1,6 +1,24 @@
 (function() {
 	var openForForm;
 
+	var forEachGen = function (indexable, callback, scope) {
+		for (var i = 0; i < indexable.length; i++) {
+			callback.call(scope, i, indexable[i]); // passes back stuff we need
+		}
+	};
+
+	var fadeIn = function(el) {
+		el.style.display = 'block';
+
+		setTimeout(function() { el.style.opacity = 1; }, 10);
+	};
+
+	var fadeOut = function(el) {
+		el.style.opacity = 0;
+
+		setTimeout(function() { el.style.display = 'none'; }, 251);
+	};
+
 	window.gdprSubscribeModal = function (formID, privacyPolicyURL, linkColour, buttonTextColour) {
 
 		var modalSelector = '.section-gdpr-subscribe-modal';
@@ -9,14 +27,14 @@
 		var colorLink = !!linkColour ? linkColour : '#22B573';
 		var btnTextColour = !!buttonTextColour ? buttonTextColour : '#006837';
 
-		$('input[type="submit"]').each(function(incId, domElement){
-			if($(domElement).attr('id') == 'submit' || $(domElement).attr('name') == 'submit'){
+		forEachGen(document.querySelectorAll('input[type="submit"]'), function(incIdx, domEl){
+			if(domEl.id == 'submit' || domEl.attributes.name == 'submit'){
 				console.error("This page contains a form with the id/name submit, this will stop the form from being submitted programmatically, please change.");
 			}
 		});
 
-		if($(modalSelector).length == 0) {
-			$('body').append("<section class=\"section-gdpr-subscribe-modal\" style='display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index:9999;'>\n" +
+		if(document.querySelectorAll(modalSelector).length == 0) {
+			$('body').append("<section class=\"section-gdpr-subscribe-modal\" style='display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index:9999; opacity: 0; transition: opacity 250ms ease-in-out'>\n" +
 				"\t\t\t<div class=\"sub-overlay\" style='position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0, 0.75); z-index: 0;'></div>\n" +
 				"\t\t\t<div class=\"sub-content\" style='position: absolute; top: 50%; left: 0; right: 0; width: 100%; max-width: 660px; margin: 0 auto; z-index: 1; background: #fff; padding: 70px 0 60px; text-align: center; transform: translateY(-50%);'>\n" +
 				"\t\t\t\t<div class=\"btn-close\" style='position: absolute; height: 25px; cursor: pointer; top: 25px; right: 20px; display: block;'>\n" +
@@ -36,34 +54,49 @@
 				"\t\t</section>");
 		}
 
+		var modal = document.querySelector(modalSelector);
+
 		// Fade out on confirm and submit form
-		$(modalSelector + ' .btn-confirm').click(function () {
-			$(modalSelector).fadeOut();
-			GDPRaccepted = true;
-			if(openForForm) {
-				openForForm.submit();
-			} else {
-				console.error('Lost form state somehow???');
-			}
+
+		forEachGen(modal.querySelectorAll('.btn-confirm'),  function(btnIdx, btnEl) {
+			btnEl.addEventListener('click',
+				function () {
+				fadeOut(modal);
+				GDPRaccepted = true;
+				if(openForForm) {
+					openForForm.submit();
+				} else {
+					console.error('Lost form state somehow???');
+				}
+			})
 		});
 
 		// Fade out on btn close
-		$(modalSelector + ' .btn-close, ' + modalSelector + ' .sub-overlay').click(function () {
-			$(modalSelector).fadeOut();
+		forEachGen(modal.querySelectorAll('.btn-close, .sub-overlay'),  function(idx, closerEl) {
+			closerEl.addEventListener('click',
+				function () {
+					fadeOut(modal);
+				})
 		});
 
-		var $form = $(formID);
+		if (formID.indexOf('#') === 0) {
+			formID = formID.slice(1);
+		}
 
-		$form.submit(function (e) {
-			if(GDPRaccepted === false) {
-				e.preventDefault();
-				e.stopImmediatePropagation();
+		var formEl = document.getElementById(formID);
 
-				// Fade modal in
-				openForForm = $form;
-				$(modalSelector).fadeIn();
+		if(formEl) {
+			formEl.addEventListener('submit', function (e) {
+				if(GDPRaccepted === false) {
+					e.preventDefault();
+					e.stopImmediatePropagation();
 
-			}
-		});
+					// Fade modal in
+					openForForm = formEl;
+					fadeIn(modal);
+
+				}
+			});
+		}
 	}
-})()
+})();
