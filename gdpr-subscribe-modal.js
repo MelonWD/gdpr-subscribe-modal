@@ -90,18 +90,27 @@
 
 		var formEl = document.getElementById(formID);
 
+		var formHandler = function (e) {
+			if(GDPRaccepted === false) {
+				e.preventDefault();
+				e.stopImmediatePropagation();
+
+				// Fade modal in
+				openForForm = formEl;
+				fadeIn(modal);
+
+				return false;
+			}
+		};
+
 		if(formEl) {
-			formEl.addEventListener('submit', function (e) {
-				if(GDPRaccepted === false) {
-					e.preventDefault();
-					e.stopImmediatePropagation();
+			formEl.addEventListener('submit', formHandler);
+		}
 
-					// Fade modal in
-					openForForm = formEl;
-					fadeIn(modal);
+		var subEl = formEl.querySelector('input[type="submit"]');
 
-				}
-			});
+		if(subEl) {
+			subEl.addEventListener('click', formHandler);
 		}
 	}
 })();
