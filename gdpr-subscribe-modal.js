@@ -8,7 +8,7 @@
 	};
 
 	var fadeIn = function(el) {
-		el.style.display = 'block';
+		el.style.display = 'flex';
 
 		setTimeout(function() { el.style.opacity = 1; }, 10);
 	};
@@ -39,9 +39,9 @@
 
 			document.body.appendChild(append);
 
-			append.outerHTML = "<section class=\"section-gdpr-subscribe-modal\" style='display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index:9999; opacity: 0; transition: opacity 250ms ease-in-out'>\n" +
+			append.outerHTML = "<section class=\"section-gdpr-subscribe-modal\" style='display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index:9999; opacity: 0; transition: opacity 250ms ease-in-out; justify-content: center; align-content: center; padding:10px'>\n" +
 				"\t\t\t<div class=\"sub-overlay\" style='position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0, 0.75); z-index: 0;'></div>\n" +
-				"\t\t\t<div class=\"sub-content\" style='position: absolute; top: 50%; left: 0; right: 0; width: 100%; max-width: 660px; margin: 0 auto; z-index: 1; background: #fff; padding: 70px 0 60px; text-align: center; transform: translateY(-50%);'>\n" +
+				"\t\t\t<div class=\"sub-content\" style='position: relative; width: 660px; flex: 0 1 auto; margin: auto; z-index: 1; background: #fff; padding: 70px 0 60px; text-align: center'>\n" +
 				"\t\t\t\t<div class=\"btn-close\" style='position: absolute; height: 25px; cursor: pointer; top: 25px; right: 20px; display: block;'>\n" +
 				"\t\t\t\t\t<div class=\"mod-bar bar-1\" style='background: #B3B3B3; display: block; width: 25px; height: 1.4px; transform: translate(0px, 14px) rotate(-45deg);'></div>\n" +
 				"\t\t\t\t\t<div class=\"mod-bar bar-2\" style='background: #B3B3B3; display: block; width: 25px; height: 1.4px; transform: translate(0px, 13px) rotate(45deg);'></div>\n" +
