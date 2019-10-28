@@ -1,12 +1,10 @@
 # Melon Web Design GDPR Subscribe Modal
-
 This is the GDPR required modal for email signups. This is required for all forms that allow the user to signup with their email address to receive marketing emails.
 
 ## What it does
 This code will stop the submission of any form it's added to and require the user to accept the before their details are subscribed to.
 
 ## Adding to your project
-
 add the following line to your index file above the site JS.
 ```html
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/MelonWD/gdpr-subscribe-modal/gdpr-subscribe-modal.js"></script>
@@ -27,8 +25,7 @@ The function takes the following 4 parameters
     * Colour of the button text incase it clashes
     * Will default to '#006837' if not used
 
-
-## Usage 
+## Usage
 ```Javascript
 // Default Construct
 gdprSubscribeModal(formID, privacyPolicyURL, linkColour, buttonTextColour);
@@ -39,5 +36,4 @@ gdprSubscribeModal('form#footer-subscribe', 'privacy-policy.html', '#E31522', '#
 ```
 
 ## Contributors
-
 Liam Canetti
